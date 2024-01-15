@@ -1,12 +1,12 @@
 const { ethers } = require('ethers');
-import config from "config.json";
+const config = require("./config.json");
 
 async function test() {
     const alchemyApiKey = 'drwJzab5REXNKrEN-yDYn1Hr5Zxq1-1j';
-    const provider = new ethers.providers.AlchemyProvider('goerli', alchemyApiKey);
+    const provider = new ethers.AlchemyProvider('goerli', alchemyApiKey);
 
     // Set up the wallet with the private key of wallet A
-    const privateKeyA = config.privateKey;;
+    const privateKeyA = config.privateKey;
     const walletA = new ethers.Wallet(privateKeyA, provider);
 
     // Set up the contract instance of the ERC-20 token
@@ -59,7 +59,7 @@ async function test() {
 
     // Transfer tokens from wallet A to wallet B
     const walletBAddress = '0x7ddf5dFeF611e1153B9eB9Ef17064DD2ac59CDf1';
-    const amount = ethers.utils.parseUnits('500000', '18'); // 500000 tokens
+    const amount = ethers.parseUnits('500000', 'ether'); // 500000 tokens
     const transferTx = await tokenContract.transfer(walletBAddress, amount);
 
     console.log('Transfer transaction hash:', transferTx.hash);
