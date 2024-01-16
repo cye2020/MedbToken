@@ -54,7 +54,7 @@ const TransferToken = () => {
 
     const handleTransfer = async () => {
         // initialize provider and signer (Metamask)
-        await window.ethereum.enable();
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
         const provider = new ethers.BrowserProvider(window.ethereum);
         const signer = await provider.getSigner();
         console.log("Account:", await signer.getAddress());
