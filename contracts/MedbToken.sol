@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts@4.7.3/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts5.0.1/token/ERC20/ERC20.sol";
 
 contract MedbToken is ERC20 {
     constructor() ERC20("Medb", "MEDB") {
