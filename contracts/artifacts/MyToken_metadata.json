@@ -23,7 +23,7 @@
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
 			{
@@ -312,6 +312,29 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "getAllowance",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -646,11 +669,11 @@
 			]
 		},
 		"contracts/MyToken.sol": {
-			"keccak256": "0x26e62394f550eeb85c6ee1379b6dc23bc587cb5ee7548b06db2df7e0a56ee906",
+			"keccak256": "0xd48d9bfc1f4c0495912ad9a268dbb8818209742dcd969f184f49b2758ec9fe26",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://68216c2871ecc21849eecc7a0ad2cf27d969caf3468481e8c34ed8aef8003548",
-				"dweb:/ipfs/QmSJ2fkFL8YTmEMvKPriNDJx29FocN3U5VaZevDDEKnjfR"
+				"bzz-raw://fec89d64dd9cda8a6fc6a0df9cbad00860f5174611a9a986cb8211c10cdebf75",
+				"dweb:/ipfs/QmeDrTvoCKUdmnSRTyou8To3M5ys1Lf82cWBM5KnZQJsKL"
 			]
 		}
 	},

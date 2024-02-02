@@ -14,11 +14,11 @@ contract MyToken is ERC20Burnable, Ownable {
         string memory name,
         string memory symbol,
         uint256 totalSupply
-    ) payable ERC20(name, symbol) Ownable(msg.sender) {
+    ) ERC20(name, symbol) Ownable(msg.sender) {
         _mint(msg.sender, totalSupply);
     }
 
-    function getAllowance(address spender, uint256 amount) {
+    function getAllowance(address owner, address spender, uint256 amount) public  {
         _approve(owner, spender, amount);
     }
 }

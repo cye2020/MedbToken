@@ -44,25 +44,6 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "itemId",
-						"type": "uint256"
-					}
-				],
-				"name": "GoodsRegistered",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
 						"name": "buyer",
 						"type": "address"
 					},
@@ -88,6 +69,25 @@
 					{
 						"indexed": true,
 						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "itemId",
+						"type": "uint256"
+					}
+				],
+				"name": "ItemRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
 						"name": "previousOwner",
 						"type": "address"
 					},
@@ -100,6 +100,51 @@
 				],
 				"name": "OwnershipTransferred",
 				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "mintValue",
+						"type": "uint256"
+					}
+				],
+				"name": "TokenGet",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "getToken",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
 			},
 			{
 				"inputs": [
@@ -161,7 +206,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "purchaseGoods",
+				"name": "purchaseItem",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -184,7 +229,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "registerGoods",
+				"name": "registerItem",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -198,10 +243,36 @@
 			},
 			{
 				"inputs": [],
+				"name": "thisAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "token",
 				"outputs": [
 					{
-						"internalType": "contract IERC20",
+						"internalType": "contract MyToken",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "tokenOwner",
+				"outputs": [
+					{
+						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
@@ -280,12 +351,44 @@
 				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
 			]
 		},
+		"@openzeppelin/contracts@5.0.1/interfaces/draft-IERC6093.sol": {
+			"keccak256": "0x60c65f701957fdd6faea1acb0bb45825791d473693ed9ecb34726fdfaa849dd7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ea290300e0efc4d901244949dc4d877fd46e6c5e43dc2b26620e8efab3ab803f",
+				"dweb:/ipfs/QmcLLJppxKeJWqHxE2CUkcfhuRTgHSn8J4kijcLa5MYhSt"
+			]
+		},
+		"@openzeppelin/contracts@5.0.1/token/ERC20/ERC20.sol": {
+			"keccak256": "0xc3e1fa9d1987f8d349dfb4d6fe93bf2ca014b52ba335cfac30bfe71e357e6f80",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c5703ccdeb7b1d685e375ed719117e9edf2ab4bc544f24f23b0d50ec82257229",
+				"dweb:/ipfs/QmTdwkbQq7owpCiyuzE7eh5LrD2ddrBCZ5WHVsWPi1RrTS"
+			]
+		},
 		"@openzeppelin/contracts@5.0.1/token/ERC20/IERC20.sol": {
 			"keccak256": "0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70",
 			"license": "MIT",
 			"urls": [
 				"bzz-raw://0ea104e577e63faea3b69c415637e99e755dcbf64c5833d7140c35a714d6d90c",
 				"dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq"
+			]
+		},
+		"@openzeppelin/contracts@5.0.1/token/ERC20/extensions/ERC20Burnable.sol": {
+			"keccak256": "0x2659248df25e34000ed214b3dc8da2160bc39874c992b477d9e2b1b3283dc073",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c345af1b0e7ea28d1216d6a04ab28f5534a5229b9edf9ca3cd0e84950ae58d26",
+				"dweb:/ipfs/QmY63jtSrYpLRe8Gj1ep2vMDCKxGNNG3hnNVKBVnrs2nmA"
+			]
+		},
+		"@openzeppelin/contracts@5.0.1/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0xaa761817f6cd7892fcf158b3c776b34551cde36f48ff9703d53898bc45a94ea2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0ad7c8d4d08938c8dfc43d75a148863fb324b80cf53e0a36f7e5a4ac29008850",
+				"dweb:/ipfs/QmcrhfPgVNf5mkdhQvy1pMv51TFokD3Y4Wa5WZhFqVh8UV"
 			]
 		},
 		"@openzeppelin/contracts@5.0.1/utils/Context.sol": {
@@ -297,11 +400,19 @@
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0x6c8c980966cd206c2af3175e626de61cd61e42ee3e981e6c2d00d03a040cae8a",
+			"keccak256": "0x507505663353ec0fa83137e131209b4634b64cce134bc9ac3366594ba261aba4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d62041371d4a72d5e9a76e923b8ecec0f8e6937fa8b7f3a3342992af62a0443f",
-				"dweb:/ipfs/QmfBoe1krYAbTuaWG3dPdSsxvy6geYDrCFExVCoCB5u3VS"
+				"bzz-raw://b220782615fdd852796623b68c1d5a989c4b00c60da6db17e05527abe1808e81",
+				"dweb:/ipfs/QmaVGxbQnVpRwSp91aoeCswcF3yQVVKXJoTuKXNXKKVs4m"
+			]
+		},
+		"contracts/MyToken.sol": {
+			"keccak256": "0xd48d9bfc1f4c0495912ad9a268dbb8818209742dcd969f184f49b2758ec9fe26",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fec89d64dd9cda8a6fc6a0df9cbad00860f5174611a9a986cb8211c10cdebf75",
+				"dweb:/ipfs/QmeDrTvoCKUdmnSRTyou8To3M5ys1Lf82cWBM5KnZQJsKL"
 			]
 		}
 	},

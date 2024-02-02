@@ -9,6 +9,7 @@ contract Market is Ownable {
     // ERC-20 토큰 주소
     MyToken public token;
     address public tokenOwner;
+    address public thisAddress = address(this);
 
     // 이벤트: 아이템 구매
     event ItemPurchased(address indexed buyer, uint256 itemId, uint256 quantity);
@@ -36,11 +37,15 @@ contract Market is Ownable {
         tokenOwner = token.owner();
     }
 
-    function getToken(uint256 amount) external payable {
+    function getToken(uint256 amount) payable external {
         require(amount <= token.balanceOf(tokenOwner), "Insufficient balance");
-        token.getAllowance(msg.sender, amount);
-        token.transferFrom(token.owner(), msg.sender, amount);
-        emit TokenGet(msg.sender, amount);
+        token.getAllowance(token.owner(), address(this), amount);
+        token.transferFrom(token.owner(), this.owner(), amount);
+        emit TokenGet(this.owner(), amount);
+    }
+
+    function getBalance() payable external returns (uint256) {
+        return token.balanceOf(this.owner());
     }
 
     // 아이템 등록 함수
@@ -50,12 +55,13 @@ contract Market is Ownable {
 
     // 아이템 구매 함수
     function purchaseItem(uint256 itemId, uint256 quantity) external {
-        require(items[itemId].quantity >= quantity, "Insufficient goods quantity");
+        require(items[itemId].quantity >= quantity, "Insufficient items quantity");
 
         uint256 totalPrice = items[itemId].price * quantity;  // 가격 로직을 필요에 따라 추가
         require(token.balanceOf(msg.sender) >= totalPrice, "Insufficient funds");
 
         // 아이템 판매자에게 토큰 전송
+        token.getAllowance(msg.sender, address(this), totalPrice);
         token.transferFrom(msg.sender, items[itemId].owner, totalPrice);
 
         // 아이템 목록 갱신
