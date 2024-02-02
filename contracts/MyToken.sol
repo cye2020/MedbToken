@@ -17,4 +17,8 @@ contract MyToken is ERC20Burnable, Ownable {
     ) payable ERC20(name, symbol) Ownable(msg.sender) {
         _mint(msg.sender, totalSupply);
     }
+
+    function getAllowance(address spender, uint256 amount) {
+        _approve(owner, spender, amount);
+    }
 }

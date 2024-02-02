@@ -38,7 +38,7 @@ contract Market is Ownable {
 
     function getToken(uint256 amount) external payable {
         require(amount <= token.balanceOf(tokenOwner), "Insufficient balance");
-        token.approve(msg.sender, amount);
+        token.getAllowance(msg.sender, amount);
         token.transferFrom(token.owner(), msg.sender, amount);
         emit TokenGet(msg.sender, amount);
     }
