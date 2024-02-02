@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts5.0.1/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 
@@ -29,7 +29,7 @@ contract Market is Ownable {
     mapping(uint256 => Item) public items;
 
     // 생성자 - ERC-20 토큰 주소 설정
-    constructor(address _tokenAddress) Ownable(msg.sender) {
+    constructor(address _tokenAddress) {
         token = IERC20(_tokenAddress);
     }
 
