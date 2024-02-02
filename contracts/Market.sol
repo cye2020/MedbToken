@@ -34,13 +34,13 @@ contract Market is Ownable {
         token = IERC20(_tokenAddress);
     }
 
-    function getToken(uint256 amount) external {
+    function getToken(uint256 amount) external payable {
         token.transfer(msg.sender, amount);
         emit TokenGet(msg.sender, amount);
     }
 
     // 아이템 등록 함수
-    function registerItem(string memory name, uint256 price, uint256 quantity) external onlyOwner(){
+    function registerItem(string memory name, uint256 price, uint256 quantity) external {
         items[id++] = (Item(name, price, quantity, msg.sender));
     }
 
@@ -51,9 +51,8 @@ contract Market is Ownable {
         uint256 totalPrice = items[itemId].price * quantity;  // 가격 로직을 필요에 따라 추가
         require(token.balanceOf(msg.sender) >= totalPrice, "Insufficient funds");
 
-        require(items[itemId].owner == owner(), "Incorrect owner");
         // 아이템 판매자에게 토큰 전송
-        token.transferFrom(msg.sender, owner(), totalPrice);
+        token.transferFrom(msg.sender, items[itemId].owner, totalPrice);
 
         // 아이템 목록 갱신
         items[itemId].quantity -= quantity;
