@@ -12,7 +12,7 @@ contract Market is Ownable {
     // 이벤트: 아이템 구매
     event ItemPurchased(address indexed buyer, uint256 itemId, uint256 quantity);
 
-    event GoodsRegistered(address indexed owner, uint256 itemId);
+    event ItemRegistered(address indexed owner, uint256 itemId);
 
 
     uint256 id;
@@ -34,12 +34,12 @@ contract Market is Ownable {
     }
 
     // 아이템 등록 함수
-    function registerGoods(string memory name, uint256 price, uint256 quantity) external onlyOwner(){
+    function registerItem(string memory name, uint256 price, uint256 quantity) external onlyOwner(){
         items[id++] = (Item(name, price, quantity, msg.sender));
     }
 
     // 아이템 구매 함수
-    function purchaseGoods(uint256 itemId, uint256 quantity) external {
+    function purchaseItem(uint256 itemId, uint256 quantity) external {
         require(items[itemId].quantity >= quantity, "Insufficient goods quantity");
 
         uint256 totalPrice = items[itemId].price * quantity;  // 가격 로직을 필요에 따라 추가
