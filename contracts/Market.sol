@@ -29,7 +29,7 @@ contract Market is Ownable {
     mapping(uint256 => Item) public items;
 
     // 생성자 - ERC-20 토큰 주소 설정
-    constructor(address _tokenAddress) Ownable() {
+    constructor(address _tokenAddress) Ownable(msg.sender) {
         token = IERC20(_tokenAddress);
     }
 
