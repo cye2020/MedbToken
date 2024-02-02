@@ -3,11 +3,12 @@ pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts@5.0.1/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts@5.0.1/access/Ownable.sol";
-import "./Mytoken.sol";
+import "contracts/MyToken.sol";
 
 contract Market is Ownable {
     // ERC-20 토큰 주소
-    IERC20 public token;
+    MyToken public token;
+    address public tokenOwner;
 
     // 이벤트: 아이템 구매
     event ItemPurchased(address indexed buyer, uint256 itemId, uint256 quantity);
@@ -31,11 +32,12 @@ contract Market is Ownable {
 
     // 생성자 - ERC-20 토큰 주소 설정
     constructor(address _tokenAddress) Ownable(msg.sender) {
-        token = Mytoken(_tokenAddress);
+        token = MyToken(_tokenAddress);
+        tokenOwner = token.owner();
     }
 
     function getToken(uint256 amount) external payable {
-        token.transfer(msg.sender, amount);
+        token.transferFrom(token.owner(), msg.sender, amount);
         emit TokenGet(msg.sender, amount);
     }
 
