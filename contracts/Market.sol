@@ -14,6 +14,7 @@ contract Market is Ownable {
 
     event ItemRegistered(address indexed owner, uint256 itemId);
 
+    event TokenGet(address indexed owner, uint256 mintValue);
 
     uint256 id;
 
@@ -31,6 +32,11 @@ contract Market is Ownable {
     // 생성자 - ERC-20 토큰 주소 설정
     constructor(address _tokenAddress) Ownable(msg.sender) {
         token = IERC20(_tokenAddress);
+    }
+
+    function getToken(uint256 amount) external {
+        token.transfer(msg.sender, amount);
+        emit TokenGet(msg.sender, amount);
     }
 
     // 아이템 등록 함수
