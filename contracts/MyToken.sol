@@ -14,7 +14,7 @@ contract MyToken is ERC20Burnable, Ownable {
         string memory name,
         string memory symbol,
         uint256 totalSupply
-    ) payable ERC20(name, symbol) {
+    ) payable ERC20(name, symbol) Ownable() {
         _mint(msg.sender, totalSupply);
     }
 }
