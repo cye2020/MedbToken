@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts5.0.1/token/ERC20/extensions/ERC20Burnable.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts5.0.1/access/Ownable.sol";
 
 contract MyToken is ERC20Burnable, Ownable {
     /**
