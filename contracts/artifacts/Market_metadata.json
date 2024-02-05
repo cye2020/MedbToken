@@ -343,6 +343,14 @@
 		"remappings": []
 	},
 	"sources": {
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0ea104e577e63faea3b69c415637e99e755dcbf64c5833d7140c35a714d6d90c",
+				"dweb:/ipfs/Qmau6x4Ns9XdyynRCNNp3RhLqijJjFm7z5fyZazfYFGYdq"
+			]
+		},
 		"@openzeppelin/contracts@5.0.1/access/Ownable.sol": {
 			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
 			"license": "MIT",
@@ -400,11 +408,11 @@
 			]
 		},
 		"contracts/Market.sol": {
-			"keccak256": "0x507505663353ec0fa83137e131209b4634b64cce134bc9ac3366594ba261aba4",
+			"keccak256": "0xc3819bd5d75615e9ae7362d96ad61911f43cb3463b483ba9699f214d3c537cb4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b220782615fdd852796623b68c1d5a989c4b00c60da6db17e05527abe1808e81",
-				"dweb:/ipfs/QmaVGxbQnVpRwSp91aoeCswcF3yQVVKXJoTuKXNXKKVs4m"
+				"bzz-raw://926288cbf15a00a02f9e19fe68081d4f816c44c70d5b7aa159de5fce1357a10a",
+				"dweb:/ipfs/QmXQmV3s9Au7kQCiVC2mnwpU6febNNNGeN2m1XJs5zUDor"
 			]
 		},
 		"contracts/MyToken.sol": {
